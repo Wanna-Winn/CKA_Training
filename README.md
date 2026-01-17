@@ -75,19 +75,51 @@ choco install kubernetes-cli -y
 
 # Démarrer Minikube avec Hyper-V
 minikube start --driver=hyperv --cpus=4 --memory=8192
+```
 
-## Installation
+### 2. Installer le CKA Trainer
 
 ```bash
-# 1. Rendre le script principal exécutable
+# Cloner le dépôt (si ce n'est pas déjà fait)
+git clone https://github.com/Wanna-Winn/CKA_Training.git
+cd cka-trainer
+
+# Rendre les scripts exécutables
 chmod +x cka-training.sh setup-aliases.sh
 
-# 2. Configurer les alias Kubernetes (IMPORTANT !)
+# Configurer les alias Kubernetes (IMPORTANT !)
 ./setup-aliases.sh
 source ~/.bashrc
 
-# 3. Vérifier que tout fonctionne
+# Vérifier que tout fonctionne
 k version
+```
+
+### 3. Démarrer l'entraînement
+
+```bash
+# Lancer le système d'entraînement
+./cka-training.sh
+
+# Ou utiliser les commandes directes
+./cka-training.sh list          # Liste tous les exercices
+./cka-training.sh setup 01      # Démarrer l'exercice 01
+./cka-training.sh check 01      # Vérifier votre solution
+./cka-training.sh reset 01      # Réinitialiser l'exercice
+./cka-training.sh solution 01   # Voir la solution (dernier recours!)
+```
+
+### 4. Vérification de l'installation
+
+```bash
+# Exécuter le script de test
+./test-setup.sh
+
+# Vérifier que Minikube est prêt
+minikube status
+
+# Vérifier que kubectl fonctionne
+k get nodes
 ```
 
 ## Configuration des Alias
@@ -182,11 +214,22 @@ Les exercices sont numérotés **01 à 20** pour un tri correct.
 
 ## Stratégie d'entraînement
 
-**J-5 (18/01)**: Exercices 01-07 (Bases)
-**J-4 (19/01)**: Exercices 08-14 (Intermédiaire)
-**J-3 (20/01)**: Exercices 15-20 (Avancé)
-**J-2 (21/01)**: Révision des exercices ratés
-**J-1 (22/01)**: Simulation d'examen complet
+Voici une stratégie recommandée pour préparer efficacement l'examen CKA :
+
+### Semaine 1: Fondamentaux
+- **Jour 1-2**: Exercices 01-07 (Bases - Pods, Deployments, Services)
+- **Jour 3-4**: Exercices 08-14 (Intermédiaire - Networking, Storage, Scheduling)
+- **Jour 5**: Exercices 15-20 (Avancé - StatefulSets, Troubleshooting, ETCD)
+
+### Semaine 2: Révision et Simulation
+- **Jour 6**: Révision des exercices difficiles
+- **Jour 7**: Simulation d'examen complet (chronométré)
+- **Jour 8**: Correction et amélioration
+
+### Conseils pour la réussite
+- **Pratique quotidienne**: 2-3 heures par jour
+- **Focus sur les domaines lourds**: Troubleshooting (30%) et Cluster Architecture (25%)
+- **Maîtrise des alias**: Ils vous feront gagner 30% de temps
 
 ## Conseils pour l'examen CKA
 
@@ -243,4 +286,4 @@ chmod +x cka-training.sh setup-aliases.sh
 chmod +x exercises/exercise-*/*.sh
 ```
 
-Bon courage pour le 23/01! 🚀
+Bon courage pour votre examen CKA! 🚀
